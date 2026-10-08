@@ -21,7 +21,6 @@ import {
   FileVideo,
   Folder,
   GraduationCap,
-  Hammer,
   HardDrive,
   type LucideIcon,
   Maximize2,
@@ -32,7 +31,6 @@ import {
   PlayCircle,
   Plus,
   Rocket,
-  Sparkles,
   Users,
   X,
   Youtube,
@@ -600,8 +598,8 @@ function TiltCard({
 /* ------------------------------------------------------------------ */
 const NAV_ITEMS: { id: ViewId; label: string }[] = [
   { id: "home", label: "Accueil" },
-  { id: "resources", label: "Ressources" },
-  { id: "specialisations", label: "Spécialisations" },
+  { id: "resources", label: "Ressources S1–S4" },
+  { id: "specialisations", label: "Spécialisations S5" },
   { id: "syllabus", label: "Syllabus" },
   { id: "internships", label: "Stages" },
   { id: "community", label: "Communauté" },
@@ -690,14 +688,14 @@ const HOME_CARDS: {
   {
     view: "resources",
     icon: BookOpen,
-    title: "Ressources",
+    title: "Ressources S1–S4",
     desc: "Supports de cours, dossiers Drive et vidéos pour chaque module de S1 à S4.",
     color: "var(--accent)",
   },
   {
     view: "specialisations",
     icon: Compass,
-    title: "Spécialisations",
+    title: "Spécialisations S5",
     desc: "Filières de 3ème année — ISNM, ISE et ISEI — avec le tronc commun et les modules d'option.",
     color: "var(--cyan)",
   },
@@ -3017,6 +3015,8 @@ const COMMUNITY_CARDS: {
   },
 ];
 
+const CONTRIBUTORS = ["tricinti.R", "isco22", "1.8Volts", "Mimsy", "electrographer", "Is_jel"];
+
 function CommunityView() {
   return (
     <div className="gein-view">
@@ -3064,50 +3064,54 @@ function CommunityView() {
           </div>
 
           <Reveal delay={120}>
-            <div
-              style={{
-                marginTop: "2.5rem",
-                padding: "1.75rem",
-                borderRadius: "1.25rem",
-                border: "1px solid var(--border-soft)",
-                background: "color-mix(in srgb, var(--bg-2) 50%, transparent)",
-                backdropFilter: "blur(12px)",
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "1rem",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-                <span
-                  style={{
-                    display: "grid",
-                    placeItems: "center",
-                    width: 44,
-                    height: 44,
-                    borderRadius: 12,
-                    background: "var(--accent-soft)",
-                    color: "var(--accent)",
-                    border: "1px solid var(--border-soft)",
-                  }}
-                >
-                  <Hammer size={20} />
-                </span>
-                <div>
-                  <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: "1.1rem" }}>
-                    Envie de contribuer ?
-                  </div>
-                  <div style={{ color: "var(--text-1)", fontSize: "0.88rem" }}>
-                    Les ressources sont maintenues par la communauté. Contactez-nous pour ajouter ou corriger un lien.
-                  </div>
-                </div>
+            <div className="gein-note">
+              <div className="gein-note-eyebrow">
+                <Zap size={14} /> Mot de la promo
               </div>
-              {/* No destination yet — disabled until a contact link is provided */}
-              <button className="gein-btn gein-btn-primary is-disabled" disabled title="Bientôt disponible">
-                <Sparkles size={16} />
-                S'impliquer
-              </button>
+              <h3 className="gein-note-title">Salam Geinistes</h3>
+              <div className="gein-note-body">
+                <p>Ntmna inchaAllah had site ynf3kom.</p>
+                <p>
+                  Had site dar b hadaf wa7d howa y3awn kolchi fl 9raya, w bs7 ncreeiw communauté li l but
+                  dyalha kolchi y3awn kolchi, w fnfs lw9t ndiro wa7d l7aja lil2asaf l école wla l université
+                  madarthach : hya dyal plateforme fiha dkchi dyalna mndm.
+                </p>
+                <p>Drna l maximum bch nkhliw site fonctionnel, cool w fnfs lw9t free.</p>
+                <p>W akhiran, chokran l ay wa7d contribua f had l plateforme, 3la wjh l khosos :</p>
+              </div>
+
+              {/* Contributors inside a closed circuit: a current pulse runs around the loop
+                  and each name lights up in turn */}
+              <div className="gein-credits-loop">
+                <svg className="gein-credits-wire" aria-hidden>
+                  <rect className="track" pathLength={100} rx={16} />
+                  <rect className="pulse" pathLength={100} rx={16} />
+                  <rect className="pulse pulse-2" pathLength={100} rx={16} />
+                </svg>
+                <ul className="gein-credits" aria-label="Contributeurs">
+                  {CONTRIBUTORS.map((n, i) => (
+                    <li
+                      key={n}
+                      className="gein-credit"
+                      style={{ ["--i" as string]: i, ["--n" as string]: CONTRIBUTORS.length } as React.CSSProperties}
+                    >
+                      <span className="gein-credit-name">{n}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="gein-note-nb">
+                <span className="gein-note-nb-tag">NB</span>
+                <p>
+                  Had site dar b hadaf ghayr rib7i, kolchi open source. 3arfin bli bzaf t nas ghaybghiwna nzido
+                  ch7al mn 7aja, ms ktafina bhad l9adr bach ykon kolchi free w bsit fnfs lw9t. Mzl kaynin chi
+                  7ajat makamlinch (vids, docs etc.), ms kolla khtra chi promo zadt chi 7aja ghandiro liha update
+                  hnaya b idni Lah. Ntlbo Lah yt9bel mnna w mnkom sali7 l2a3mal.
+                </p>
+              </div>
+
+              <p className="gein-note-shout">YALAH SIRO 9RAW 3LA RASKOM</p>
             </div>
           </Reveal>
         </div>
